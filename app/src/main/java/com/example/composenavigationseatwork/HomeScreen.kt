@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(
-    onViewDetails: (String, String, String) -> Unit
+    onViewDetails: (String, String, String, String) -> Unit
 ) {
     var loginAttempts by remember {
         mutableStateOf(0)
@@ -98,34 +98,34 @@ fun HomeScreen(
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
-        Spacer(
-            modifier = Modifier.height(12.dp)
-        )
-
-        Text(
-            text = "Name: "
-        )
-        Text(
-            text = studentName,
-            modifier = Modifier.padding(bottom = 6.dp)
-        )
-
-        Text(
-            text = "Course: ",
-
-        )
-        Text(
-            text = studentCourse,
-            modifier = Modifier.padding(bottom = 6.dp)
-        )
-
-        Text(
-            text = "Year: "
-        )
-        Text(
-            text = studentYear,
-            modifier = Modifier.padding(bottom = 6.dp)
-        )
+//        Spacer(
+//            modifier = Modifier.height(12.dp)
+//        )
+//
+//        Text(
+//            text = "Name: "
+//        )
+//        Text(
+//            text = studentName,
+//            modifier = Modifier.padding(bottom = 6.dp)
+//        )
+//
+//        Text(
+//            text = "Course: ",
+//
+//        )
+//        Text(
+//            text = studentCourse,
+//            modifier = Modifier.padding(bottom = 6.dp)
+//        )
+//
+//        Text(
+//            text = "Year: "
+//        )
+//        Text(
+//            text = studentYear,
+//            modifier = Modifier.padding(bottom = 6.dp)
+//        )
 
         Spacer(
             modifier = Modifier.height(24.dp)
@@ -212,7 +212,8 @@ fun HomeScreen(
                         onViewDetails(
                             studentId,
                             studentName,
-                            studentCourse
+                            studentCourse,
+                            studentYear
                         )
                     }
 

@@ -21,13 +21,14 @@ fun AppNavigation() {
         composable("home") {
 
             HomeScreen(
-                onViewDetails = { studentId, studentName, studentCourse ->
+                onViewDetails = { studentId, studentName, studentCourse, studentYear ->
 
                     navController.navigate(
                         "details/" +
                                 "${Uri.encode(studentId)}/" +
                                 "${Uri.encode(studentName)}/" +
-                                "${Uri.encode(studentCourse)}"
+                                "${Uri.encode(studentCourse)}/"+
+                                "${Uri.encode(studentYear)}"
                     )
                 }
             )
@@ -35,7 +36,7 @@ fun AppNavigation() {
 
 
         composable(
-            route = "details/{studentId}/{studentName}/{studentCourse}",
+            route = "details/{studentId}/{studentName}/{studentCourse}/{studentYear}",
             arguments = listOf(
                 navArgument("studentId") {
                     type = NavType.StringType
@@ -45,6 +46,9 @@ fun AppNavigation() {
                 },
                 navArgument("studentCourse") {
                     type = NavType.StringType
+                },
+                navArgument("studentYear"){
+                  type = NavType.StringType
                 }
             )
         ) { backStackEntry ->
@@ -58,10 +62,14 @@ fun AppNavigation() {
             val studentCourse =
                 backStackEntry.arguments?.getString("studentCourse") ?: ""
 
+            val studentYear =
+                backStackEntry.arguments?.getString("studentYear") ?: ""
+
             DetailsScreen(
                 studentId = studentId,
                 studentName = studentName,
                 studentCourse = studentCourse,
+                studentYear = studentYear,
                 onBack = {
                     navController.popBackStack()
                 }
