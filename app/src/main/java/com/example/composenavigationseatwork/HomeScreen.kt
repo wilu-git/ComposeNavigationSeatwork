@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,7 +25,6 @@ import androidx.compose.ui.unit.dp
 fun HomeScreen(
     onViewDetails: (String, String, String) -> Unit
 ) {
-
     var loginAttempts by remember {
         mutableStateOf(0)
     }
@@ -45,6 +46,10 @@ fun HomeScreen(
 
     var errorMessage by remember {
         mutableStateOf("")
+    }
+
+    var showConfirmation by remember {
+        mutableStateOf(false)
     }
 
     Column(
@@ -172,18 +177,58 @@ fun HomeScreen(
                     errorMessage = "Course is required."
                 } else {
                     errorMessage = ""
-                    onViewDetails(
-                        studentId,
-                        studentName,
-                        studentCourse
-                    )
+                    showConfirmation = true
                 }
-
             }
         ) {
             Text(
                 text = "View Details"
             )
         }
+    }
+
+    if(showConfirmation){
+        AlertDialog(
+            onDismissRequest = {
+                showConfirmation = false
+            },
+            title = {
+                Text(
+                    text = "Confirm Student Information"
+                )
+            },
+
+            text = {
+                Text(
+                    text = "View details for:\n$studentName?"
+                )
+            },
+
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showConfirmation = false
+
+                        onViewDetails(
+                            studentId,
+                            studentName,
+                            studentCourse
+                        )
+                    }
+
+                ){
+                    Text("Continue")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        showConfirmation = false
+                    }
+                ) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }
