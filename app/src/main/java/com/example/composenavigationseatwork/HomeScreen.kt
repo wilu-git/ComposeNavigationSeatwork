@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -40,6 +41,10 @@ fun HomeScreen(
 
     var studentYear by remember{
         mutableStateOf("4")
+    }
+
+    var errorMessage by remember {
+        mutableStateOf("")
     }
 
     Column(
@@ -143,10 +148,33 @@ fun HomeScreen(
         Spacer(
             modifier = Modifier.height(12.dp)
         )
+        if(errorMessage.isNotEmpty()){
+            Text(
+                text = errorMessage,
+                color = Color.Red
+                //color = MaterialTheme.colorScheme.error
+                //Possible tanungin ni sir: colorScheme set by material 3,
+                // built in validation color. That adjusts to
+                // different themes (dark modes and dynamic color support (device wallpaper others)
+            )
+            Spacer(
+                modifier = Modifier.height(12.dp)
+            )
+        }
 
         Button(
             onClick = {
-                onViewDetails()
+                if(studentId.isBlank()) {
+                    errorMessage = "Student ID is required"
+                } else if (studentName.isBlank()){
+                    errorMessage = "Name is required"
+                } else if (studentCourse.isBlank()){
+                    errorMessage = "Course is required."
+                } else {
+                    errorMessage = ""
+                    onViewDetails()
+                }
+
             }
         ) {
             Text(
