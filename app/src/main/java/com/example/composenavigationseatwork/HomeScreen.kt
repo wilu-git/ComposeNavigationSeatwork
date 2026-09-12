@@ -142,13 +142,27 @@ fun HomeScreen(
         Button(
             onClick = {
                 loginAttempts++
-            }
+            },
+            modifier = Modifier.padding(bottom = 12.dp)
         ) {
             Text(
                 text = "Add Attempt"
+
             )
         }
 
+        Button(
+            onClick = {
+                studentCourse = ""
+                studentName = ""
+                studentId = ""
+                loginAttempts = 0
+            }
+        ){
+            Text(
+                "Clear"
+            )
+        }
 
         Spacer(
             modifier = Modifier.height(12.dp)
