@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +27,26 @@ fun HomeScreen(
         mutableStateOf(0)
     }
 
+    var studentName by remember {
+        mutableStateOf("Venalouie Cruz")
+    }
+    var studentId by remember {
+        mutableStateOf("20-0023-924")
+    }
+
+    var studentCourse by remember{
+        mutableStateOf("Computer Engineering")
+    }
+
+    var studentYear by remember{
+        mutableStateOf("4")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Center
     ) {
 
@@ -42,16 +58,42 @@ fun HomeScreen(
             modifier = Modifier.height(24.dp)
         )
 
-        Text(
-            text = "Name: Venalouie Cruz"
+        TextField(studentName,
+            onValueChange = {
+                studentName = it
+            },
+            label = {
+                Text("Student Name")
+            }
+        )
+
+        Spacer(
+            modifier = Modifier.height(12.dp)
         )
 
         Text(
-            text = "Course: BS Computer Engineering"
+            text = "Name: "
+        )
+        Text(
+            text ="$studentName",
+            modifier = Modifier.padding(bottom = 6.dp)
         )
 
         Text(
-            text = "Year: 4"
+            text = "Course: ",
+
+        )
+        Text(
+            text = "$studentCourse" ,
+            modifier = Modifier.padding(bottom = 6.dp)
+        )
+
+        Text(
+            text = "Year: "
+        )
+        Text(
+            text = "$studentYear",
+            modifier = Modifier.padding(bottom = 6.dp)
         )
 
         Spacer(
@@ -75,6 +117,7 @@ fun HomeScreen(
                 text = "Add Attempt"
             )
         }
+
 
         Spacer(
             modifier = Modifier.height(12.dp)
