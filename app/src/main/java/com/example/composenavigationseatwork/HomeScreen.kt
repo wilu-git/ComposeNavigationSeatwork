@@ -58,13 +58,34 @@ fun HomeScreen(
             modifier = Modifier.height(24.dp)
         )
 
+        TextField(studentId,
+            onValueChange = {
+                studentId = it
+            },
+            label = {
+                Text("Student ID")
+            },
+            modifier = Modifier.padding(bottom = 6.dp)
+        )
+
         TextField(studentName,
             onValueChange = {
                 studentName = it
             },
             label = {
                 Text("Student Name")
-            }
+            },
+            modifier = Modifier.padding(bottom = 6.dp)
+        )
+
+        TextField(studentCourse,
+            onValueChange = {
+                studentCourse = it
+            },
+            label = {
+                Text("Course")
+            },
+            modifier = Modifier.padding(bottom = 6.dp)
         )
 
         Spacer(
@@ -75,7 +96,7 @@ fun HomeScreen(
             text = "Name: "
         )
         Text(
-            text ="$studentName",
+            text = studentName,
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
@@ -84,7 +105,7 @@ fun HomeScreen(
 
         )
         Text(
-            text = "$studentCourse" ,
+            text = studentCourse,
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
@@ -92,7 +113,7 @@ fun HomeScreen(
             text = "Year: "
         )
         Text(
-            text = "$studentYear",
+            text = studentYear,
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
