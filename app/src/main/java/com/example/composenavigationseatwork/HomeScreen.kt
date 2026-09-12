@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(
-    onViewDetails: () -> Unit
+    onViewDetails: (String, String, String) -> Unit
 ) {
 
     var loginAttempts by remember {
@@ -172,7 +172,11 @@ fun HomeScreen(
                     errorMessage = "Course is required."
                 } else {
                     errorMessage = ""
-                    onViewDetails()
+                    onViewDetails(
+                        studentId,
+                        studentName,
+                        studentCourse
+                    )
                 }
 
             }

@@ -16,6 +16,9 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DetailsScreen(
+    studentId: String,
+    studentName: String,
+    studentCourse: String,
     onBack: () -> Unit
 ) {
 
@@ -36,15 +39,15 @@ fun DetailsScreen(
         )
 
         Text(
-            text = "Student ID: 20-0023-924"
+            text = "Student ID: $studentId"
         )
 
         Text(
-            text = "Name: Venalouie Cruz"
+            text = "Name: $studentName"
         )
 
         Text(
-            text = "Course: BS Computer Engineering"
+            text = "Course: $studentCourse"
         )
 
         Text(
